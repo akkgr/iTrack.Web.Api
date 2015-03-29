@@ -115,6 +115,7 @@
     <Content Include="css\main.css" />
     <Content Include="Index.html" />
     <Content Include="scripts\app.js" />
+    <Content Include="scripts\Google.js" />
     <Content Include="scripts\leaflet.groupedlayercontrol.js" />
     <Content Include="scripts\main.js" />
     <Content Include="scripts\signInCtrl.js" />

@@ -3,7 +3,7 @@
         $scope.message = $routeParams.message;
         $scope.signIn = function () {
             $scope.showMessage = false;
-            var params = "grant_type=password&username=" + $scope.username + "&password=" + $scope.password;
+            var params = "grant_type=password&username=" + $scope.user + "&password=" + $scope.password;
             $http({
                 url: '/Token',
                 method: "POST",

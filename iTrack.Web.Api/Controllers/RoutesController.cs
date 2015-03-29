@@ -69,6 +69,7 @@ namespace iTrack.Web.Api.Controllers
                               DriveTime = r.Drive_time,
                               RestTime = r.Rest_Time
                           }).Take(1);
+            
             return routes;
         }
 
@@ -76,7 +77,7 @@ namespace iTrack.Web.Api.Controllers
         {
             if (disposing)
                 db.Dispose();
-
+            
             base.Dispose(disposing);
         }
     }

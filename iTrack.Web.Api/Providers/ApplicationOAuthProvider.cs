@@ -42,7 +42,7 @@ namespace iTrack.Web.Api.Providers
 
             var claims = new[] {
                 new Claim(ClaimTypes.Name, user.username),
-                new Claim(ClaimTypes.Email, user.Email),
+                //new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Country, user.CompaniesToView),
                 new Claim(ClaimTypes.StateOrProvince, user.ObjectsToView)
             };

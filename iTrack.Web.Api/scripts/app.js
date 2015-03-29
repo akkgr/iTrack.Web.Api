@@ -101,7 +101,7 @@ app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope
     });
 
     $rootScope.getUserName = function () {
-        if ($http.defaults.headers.common.RefreshToken != null) {
+        if ($cookieStore.get('_Token') != null) {
             $http.get('/api/Account/GetCurrentUserName')
                 .success(function (data, status, headers, config) {
                     if (data != "null") {
@@ -115,7 +115,7 @@ app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope
                     $rootScope.loggedIn = false;
                 });
         } else {
-            $rootScope.loggedIn = true;
+            $rootScope.loggedIn = false;
         }
     };
 

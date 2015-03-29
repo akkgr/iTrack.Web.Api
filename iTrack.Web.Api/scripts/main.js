@@ -95,6 +95,8 @@ var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.
     attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });
 
+var ggl = new L.Google();
+
 /* Overlay Layers */
 var highlight = L.geoJson(null);
 var highlightStyle = {
@@ -233,7 +235,8 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-    "Street Map": mapquestOSM
+    "Street Map": mapquestOSM,
+    "Satelite" : ggl
 };
 
 var groupedOverlays = {
