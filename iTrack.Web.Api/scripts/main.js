@@ -95,8 +95,8 @@ var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.
     attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
 });*/
 
-var mapquestOSM = new L.Google('ROADMAP');
-var ggl = new L.Google();
+var mapquestOSM = new L.Google('ROADMAP', { maxZoom: 21 });
+var ggl = new L.Google('',{ maxZoom: 21 });
 
 /* Overlay Layers */
 var highlight = L.geoJson(null);
@@ -133,7 +133,7 @@ var vehicles = L.geoJson(null, {
     onEachFeature: function (feature, layer) {
         if (feature.properties) {
             var content = "<table class='table table-striped table-bordered table-condensed'>" +
-                "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" +
+                "<tr><th>Coordinates</th><td>" + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + "</td></tr>" +
                 "<tr><th>Time</th><td>" + feature.properties.TIME + "</td></tr>" +
                 "<tr><th>Speed</th><td>" + feature.properties.SPEED + "</td></tr>" +
                 "<tr><th>Heading</th><td>" + feature.properties.HEADING + "</td></tr>" +
