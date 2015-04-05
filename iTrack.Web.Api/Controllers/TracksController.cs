@@ -71,7 +71,23 @@ namespace iTrack.Web.Api.Controllers
                 {
                     type = "Feature",
                     id = item.ID,
-                    properties = new { NAME = item.Title},
+                    properties = new 
+                    { 
+                        NAME = item.Title, 
+                        TIME = item.datetime, 
+                        SPEED = item.Speed,
+                        HEADING = item.Heading,
+                        ALT = item.Altitude,
+                        SAT = item.Satelites,
+                        GSM = item.GSMsingal,
+                        COLOR = item.Color,
+                        Alarm = item.Alarm,
+                        AlarmType = item.AlarmType,
+                        AlarmOff = item.alarmOff,
+                        EngineOn = item.EngineOn,
+                        GprsOff = item.gprsOff,
+                        GpsOn = item.gpsOn
+                    },
                     geometry = new { type = "Point", coordinates = item.Coordinates}
                 });
             }

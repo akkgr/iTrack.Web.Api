@@ -75,7 +75,7 @@ function syncSidebar() {
     vehicles.eachLayer(function (layer) {
         if (map.hasLayer(vehicleLayer)) {
             if (map.getBounds().contains(layer.getLatLng())) {
-                $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="images/vehicle.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+                $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="images/' + layer.feature.properties.COLOR  + '.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
             }
         }
     });
@@ -88,13 +88,14 @@ function syncSidebar() {
     });
 }
 
-/* Basemap Layers */
+/* Basemap Layers 
 var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
     maxZoom: 19,
     subdomains: ["otile1", "otile2", "otile3", "otile4"],
     attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-});
+});*/
 
+var mapquestOSM = new L.Google('ROADMAP');
 var ggl = new L.Google();
 
 /* Overlay Layers */
@@ -120,9 +121,9 @@ var vehicles = L.geoJson(null, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: L.icon({
-                iconUrl: "images/vehicle.png",
-                iconSize: [24, 28],
-                iconAnchor: [12, 28],
+                iconUrl: "images/" + feature.properties.COLOR + ".png",
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
                 popupAnchor: [0, -25]
             }),
             title: feature.properties.NAME,
@@ -131,7 +132,20 @@ var vehicles = L.geoJson(null, {
     },
     onEachFeature: function (feature, layer) {
         if (feature.properties) {
-            var content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Phone</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Address</th><td>" + feature.properties.NAME + "</td></tr>" + "<tr><th>Website</th><td><a class='url-break' href='" + feature.properties.NAME + "' target='_blank'>" + feature.properties.NAME + "</a></td></tr>" + "<table>";
+            var content = "<table class='table table-striped table-bordered table-condensed'>" +
+                "<tr><th>Name</th><td>" + feature.properties.NAME + "</td></tr>" +
+                "<tr><th>Time</th><td>" + feature.properties.TIME + "</td></tr>" +
+                "<tr><th>Speed</th><td>" + feature.properties.SPEED + "</td></tr>" +
+                "<tr><th>Heading</th><td>" + feature.properties.HEADING + "</td></tr>" +
+                "<tr><th>Altitude</th><td>" + feature.properties.ALT + "</td></tr>" +
+                "<tr><th>Satelites</th><td>" + feature.properties.SAT + "</td></tr>" +
+                "<tr><th>GSM singal</th><td>" + feature.properties.GSM + "</td></tr>" +
+                "<tr><th>Alarm</th><td>" + feature.properties.AlarmType + "</td></tr>" +
+                "<tr><th>Engine On</th><td>" + feature.properties.EngineOn + "</td></tr>" +
+                "<tr><th>GPRS Off</th><td>" + feature.properties.GprsOff + "</td></tr>" +
+                "<tr><th>GPS On</th><td>" + feature.properties.GpsOn + "</td></tr>" +
+                "<tr><th>Alarm Off</th><td>" + feature.properties.AlarmOff + "</td></tr>" +
+                "<table>";
             layer.on({
                 click: function (e) {
                     $("#feature-title").html(feature.properties.NAME);
@@ -140,7 +154,7 @@ var vehicles = L.geoJson(null, {
                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
                 }
             });
-            $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="images/vehicle.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+            $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="images/'+layer.feature.properties.COLOR+'.png"></td><td class="feature-name">' + layer.feature.properties.NAME + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
             vehicleSearch.push({
                 name: layer.feature.properties.NAME,
                 address: layer.feature.properties.NAME,

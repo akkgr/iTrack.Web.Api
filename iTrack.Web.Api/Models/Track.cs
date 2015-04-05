@@ -83,9 +83,9 @@ namespace iTrack.Web.Api.Models
             {
                 if (string.IsNullOrEmpty(_color))
                 {
-                    if (alarmOff || gprsOff || !gpsOn) _color = "Red";
-                    else if (EngineOn) _color = "Green";
-                    else _color = "Yellow";
+                    if (alarmOff || gprsOff || !gpsOn) _color = "red";
+                    else if (EngineOn) _color = "green";
+                    else _color = "blue";
                 }
                 return _color;
             }

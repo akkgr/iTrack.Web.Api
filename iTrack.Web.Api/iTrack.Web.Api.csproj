@@ -100,8 +100,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\leaflet.groupedlayercontrol.css" />
+    <Content Include="images\blue.png" />
     <Content Include="images\globe.png" />
-    <Content Include="images\vehicle.png" />
+    <Content Include="images\green.png" />
+    <Content Include="images\red.png" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\itrack.pubxml" />
     <None Include="Web.Debug.config">
