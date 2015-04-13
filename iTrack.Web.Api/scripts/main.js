@@ -88,6 +88,25 @@ function syncSidebar() {
     });
 }
 
+function getAddress(lat,lng)
+{
+    var geocoder = new google.maps.Geocoder();
+    var latlng = new google.maps.LatLng(lat, lng);
+    geocoder.geocode({ 'latLng': latlng }, function (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+                $(".address").text(results[0].formatted_address);
+            }
+            else {
+                $(".address").text(status);
+            }
+        }
+        else {
+            $(".address").text(status);
+        }
+    });
+}
+
 /* Basemap Layers 
 var mapquestOSM = L.tileLayer("http://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
     maxZoom: 19,
@@ -134,6 +153,7 @@ var vehicles = L.geoJson(null, {
         if (feature.properties) {
             var content = "<table class='table table-striped table-bordered table-condensed'>" +
                 "<tr><th>Coordinates</th><td>" + feature.geometry.coordinates[1] + ', ' + feature.geometry.coordinates[0] + "</td></tr>" +
+                "<tr><th>Address</th><td><span class='address'></span><button class='pull-right' type='button' onclick='getAddress(" + feature.geometry.coordinates[1] + ", " + feature.geometry.coordinates[0] + ")'><i class='fa fa-search'></i></button></td></tr>" +
                 "<tr><th>Time</th><td>" + feature.properties.TIME + "</td></tr>" +
                 "<tr><th>Speed</th><td>" + feature.properties.SPEED + "</td></tr>" +
                 "<tr><th>Heading</th><td>" + feature.properties.HEADING + "</td></tr>" +
